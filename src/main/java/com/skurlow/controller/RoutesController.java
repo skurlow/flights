@@ -23,6 +23,12 @@ public class RoutesController {
     @Autowired
     private RouteRepository routeRepository;
 
+    /**
+     * Find all the routes departing a given airport.
+     *
+     * @param airport the departing airport.
+     * @return routes
+     */
     @GetMapping(path = "/out/{airport}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<RouteResource> flightsOut(@PathVariable String airport) {
         List<RouteResource> routes = new ArrayList<>();
@@ -33,6 +39,12 @@ public class RoutesController {
         return routes;
     }
 
+    /**
+     * Find all the routes arriving at a given airport.
+     *
+     * @param airport the arriving airport.
+     * @return routes
+     */
     @GetMapping(path = "/in/{airport}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<RouteResource> flightsIn(@PathVariable String airport) {
         List<RouteResource> routes = new ArrayList<>();
@@ -43,6 +55,13 @@ public class RoutesController {
         return routes;
     }
 
+    /**
+     * Find all the active routes between two airports.
+     *
+     * @param sourceAirport the source airport
+     * @param destinationAirport the destination airport
+     * @return active routes
+     */
     @GetMapping(path = "/between/{sourceAirport}/{destinationAirport}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<RouteResource> routesBetween(@PathVariable String sourceAirport, @PathVariable String destinationAirport) {
         List<RouteResource> routes = new ArrayList<>();
